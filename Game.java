@@ -71,12 +71,12 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             tick();
             render();
             try {
                 Thread.sleep(1000 / 60);
-            } catch(InterruptedException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -84,21 +84,26 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             player.righth = true;
-        } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             player.left = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             player.righth = false;
-        } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             player.left = false;
         }
     }
 
+    // TODO: method stub
     @Override
-    
+    public void keyTyped(KeyEvent arg0) {
+
+    }
+
+}

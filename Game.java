@@ -31,5 +31,43 @@ public class Game extends Canvas implements Runnable, KeyListener {
         ball = new Ball(100, HEIGHT / 2 - 1)
     }
 
+    public static void main(String[] args) {
+        Game game = new Game();
+        JFrame frame = new JFrame("Pong");
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(game);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        new Thread(game).start();
+    }
+
+    public void tick() {
+        player.tick();
+        enemy.tick();
+        ball.tick();
+    }
+
+    public void render() {
+        BufferStrategy bs = this.getBufferStrategy();
+        if(bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+
+        Graphics g = layer.getGraphics();
+        g.setColor(Color.black);
+        g.fillRect(0, 0, WIDTH, HEIGHT); 
+        player.render(g);
+        enemy.render(g);
+        ball.render(g);
+
+        g = bs.getDrawGraphics();
+        g.drawImage(layer, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+        bs.show();
+    }
+
     
 }

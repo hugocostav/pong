@@ -52,14 +52,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
     public void render() {
         BufferStrategy bs = this.getBufferStrategy();
-        if(bs == null) {
+        if (bs == null) {
             this.createBufferStrategy(3);
             return;
         }
 
         Graphics g = layer.getGraphics();
         g.setColor(Color.black);
-        g.fillRect(0, 0, WIDTH, HEIGHT); 
+        g.fillRect(0, 0, WIDTH, HEIGHT);
         player.render(g);
         enemy.render(g);
         ball.render(g);
@@ -67,6 +67,28 @@ public class Game extends Canvas implements Runnable, KeyListener {
         g = bs.getDrawGraphics();
         g.drawImage(layer, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
         bs.show();
+    }
+
+    @Override
+    public void run() {
+        while(true) {
+            tick();
+            render();
+            try {
+                Thread.sleep(1000 / 60);
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            player.righth = true;
+        } else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+            player.left = true;
+        }
     }
 
     

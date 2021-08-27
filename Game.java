@@ -17,7 +17,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
     public static int HEIGHT = 120;
     public static int SCALE = 3;
 
-    public BufferredImage layer = new BufferredImage(WIDTH, HEIGHT, BufferredImage.TYPE_INT_RGB);
+    public BufferedImage layer = new BufferredImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 
     public static Player player;
     public static Enemy enemy;
@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
         this.addKeyListener(this);
         player = new Player(100, HEIGHT - 5);
         enemy = new Enemy(100, 0);
-        ball = new Ball(100, HEIGHT / 2 - 1)
+        ball = new Ball(100, HEIGHT / 2 - 1);
     }
 
     public static void main(String[] args) {
